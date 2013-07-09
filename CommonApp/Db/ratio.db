@@ -1,0 +1,8 @@
+record(calc,"$(P)RATIO")
+{
+    field(DESC,"Ratio")
+	field(SCAN,"1 second")
+    field(INPA, "$(N)")
+    field(INPB, "$(D)")
+    field("CALC", "A / B")
+}
