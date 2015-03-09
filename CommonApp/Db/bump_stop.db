@@ -1,0 +1,52 @@
+record(bi, "$(P)BUMP_STOP")
+{
+    field(ZNAM, "TRIPPED")
+    field(ONAM, "NOT_TRIPPED")
+	field(VAL, 1)
+	field(ZSV, "MAJOR")
+	field(INP, "$(P)$(BMPSTP) CP")
+	field(SIML, "$(P)SIM")
+    field(SIOL, "$(P)SIM:BUMP_STOP")
+	field(FLNK, "$(P)MESSAGE_FORWARD_CALC")
+}
+
+record(calc, "$(P)MESSAGE_FORWARD_CALC")
+{
+	field(INPA, "$(P)BUMP_STOP")
+	field(CALC, "A+1")
+	field(FLNK, "$(P)MESSAGE_SELECT")
+}
+
+record(fanout, "$(P)MESSAGE_SELECT")
+{
+	field(LNK1, "$(P)BUMP_TRIPPED_MESSAGE")
+	field(SELM, "Specified")
+	field(SELL, "$(P)MESSAGE_FORWARD_CALC")
+}
+
+record(stringout, "$(P)BUMP_TRIPPED_MESSAGE")
+{
+	field(DTYP, "stdio")
+	field(OUT, "@errlog")
+	field(VAL, "BUMP STOP TRIPPED")
+}
+
+### SIMULATION RECORDS ###
+
+record(bo, "$(P)SIM")
+{
+    field(SCAN, "Passive")
+    field(DTYP, "Soft Channel")
+    field(ZNAM, "NO")
+    field(ONAM, "YES")
+}
+
+record(bi, "$(P)SIM:BUMP_STOP")
+{
+	field(SCAN, "Passive")
+    field(ZNAM, "TRIPPED")
+    field(ONAM, "NOT_TRIPPED")
+	field(VAL, 1)
+	field(DTYP, "Soft Channel")
+	field(FLNK, "$(P)BUMP_STOP")
+}

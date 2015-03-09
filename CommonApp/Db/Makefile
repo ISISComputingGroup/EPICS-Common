@@ -12,7 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 #DB += xxx.db
 
-DB += ratio.db
+DB += ratio.db bump_stop.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
