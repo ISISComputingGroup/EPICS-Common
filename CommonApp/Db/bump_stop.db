@@ -4,10 +4,17 @@ record(bi, "$(P)BUMP_STOP")
     field(ONAM, "NOT_TRIPPED")
 	field(VAL, 1)
 	field(ZSV, "MAJOR")
-	field(INP, "$(P)$(BMPSTP) CP")
+	field(INP, "$(P)BUMP_STOP_READ")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:BUMP_STOP")
 	field(FLNK, "$(P)MESSAGE_FORWARD_CALC")
+}
+
+record(calc, "$(P)BUMP_STOP_READ")
+{
+	field(INPA, "$(P)$(BMPSTP) CP")
+	field(CALC, "A = 0 ? 1 : 0")
+	field(FLNK, "$(P)BUMP_STOP")
 }
 
 record(calc, "$(P)MESSAGE_FORWARD_CALC")
