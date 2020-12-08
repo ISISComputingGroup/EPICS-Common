@@ -1,5 +1,6 @@
 record(mbbi, "$(P)BUMP_STOP")
 {
+    field(DESC, "Is Bump Stop tripped?")
     field(ZRST, "TRIPPED")
     field(ONST, "NOT_TRIPPED")
     field(TWST, "UNAVAILABLE")
@@ -8,18 +9,21 @@ record(mbbi, "$(P)BUMP_STOP")
     field(TWVL, 2)
     
 	field(VAL, 2)
+    field(PINI, 1)
 	field(ZRSV, "MAJOR")
-	field(INP, "$(P)BUMP_STOP_READ")
 	field(SIML, "$(P)SIM")
     field(SIOL, "$(P)SIM:BUMP_STOP")
 	field(FLNK, "$(P)MESSAGE_FORWARD_CALC")
 }
 
-record(calc, "$(P)BUMP_STOP_READ")
+record(calcout, "$(P)BUMP_STOP_READ")
 {
+    field(DESC, "Get Status of Bump Stop")
 	field(INPA, "$(P)$(BMPSTP) CP")
 	field(CALC, "A = 0 ? 1 : 0")
-	field(FLNK, "$(P)BUMP_STOP")
+    field(OUT, "$(P)BUMP_STOP PP MS")
+    field(IVOA, "Set output to IVOV")
+    field(IVOV, "2")
 }
 
 record(calc, "$(P)MESSAGE_FORWARD_CALC")
